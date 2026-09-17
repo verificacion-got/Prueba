@@ -1,4 +1,4 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -44,15 +44,15 @@
         .header-logo {
             display: flex;
             align-items: center;
-            padding: 0; /* Se quitó el padding para que pegue al borde izquierdo */
+            padding: 0; 
             flex: 1; 
             height: 100%;
         }
 
         .header-logo img {
-            width: 100%; /* Ocupa todo el ancho hasta el botón rojo */
-            height: 100%; /* Ocupa todo el alto de la cabecera */
-            object-fit: cover; /* Ajusta la imagen al espacio sin deformarla */
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
         }
 
         .header-btn {
@@ -168,6 +168,7 @@
             color: #ffffff;
             padding: 40px 20px;
             font-size: 15px;
+            overflow: hidden; /* Previene desbordamiento horizontal */
         }
 
         .footer-section {
@@ -201,13 +202,17 @@
             cursor: pointer;
         }
 
+        /* Ajustes para el SEGUNDO LOGO de extremo a extremo */
         .footer-logo {
             text-align: center;
-            margin: 40px 0;
+            margin: 40px -20px; /* Margen negativo para anular el padding de 20px del footer-blue */
         }
 
         .footer-logo img {
-            max-width: 250px;
+            width: 100%;
+            max-width: none;
+            display: block;
+            object-fit: cover;
         }
 
         .footer-links ul {
@@ -309,10 +314,9 @@
 </head>
 <body>
 
-    <!-- CABECERA -->
+    <!-- CABECERA (Primer logo de extremo a extremo) -->
     <header>
         <div class="header-logo">
-            <!-- Archivo logoA.jpg ocupando todo el ancho izquierdo -->
             <img src="logoA.jpg" alt="Universidad Andrés Bello" onerror="this.outerHTML='<div style=\'display:flex;align-items:center;padding-left:15px;\'><div style=\'width:40px;height:40px;background:#00263e;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-right:10px;\'><div style=\'color:red;font-weight:bold;font-size:20px;\'>III</div></div><div style=\'color:#00263e;font-size:18px;line-height:1;\'>Universidad<br>Andrés Bello®</div></div>'">
         </div>
         <a href="#" class="header-btn">
@@ -350,16 +354,14 @@
             <p class="form-instructions">Ingrese el Folio e Id que aparece al final del certificado.</p>
             
             <div class="input-group">
-                <!-- Se eliminó el 'value' para que no se vean los números prellenados -->
                 <input type="text" placeholder="Folio">
             </div>
             
             <div class="input-group">
-                <!-- Se eliminó el 'value' para que no se vean los números prellenados -->
                 <input type="text" placeholder="ID Alumno">
             </div>
 
-            <!-- Botón de Aceptar con evento de redirección a verificounab.html -->
+            <!-- Botón de Aceptar con evento de redirección -->
             <button class="btn-submit" onclick="window.location.href='verificounab.html'">Aceptar</button>
 
             <p class="info-text">
@@ -403,8 +405,9 @@
             <span>🎵</span>
         </div>
 
+        <!-- SEGUNDO LOGO (logoA.jpg de extremo a extremo) -->
         <div class="footer-logo">
-            <img src="logo-unab-blanco.png" alt="Universidad Andrés Bello" onerror="this.outerHTML='<div style=\'display:flex;align-items:center;justify-content:center;\'><div style=\'width:50px;height:50px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-right:15px;\'><div style=\'color:#00263e;font-weight:bold;font-size:24px;\'>III</div></div><div style=\'color:#fff;font-size:24px;line-height:1.1;text-align:left;\'>Universidad<br>Andrés Bello®</div></div>'">
+            <img src="logoA.jpg" alt="Universidad Andrés Bello" onerror="this.outerHTML='<div style=\'display:flex;align-items:center;justify-content:center;background:#fff;padding:20px;\'><div style=\'width:50px;height:50px;background:#00263e;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-right:15px;\'><div style=\'color:red;font-weight:bold;font-size:24px;\'>III</div></div><div style=\'color:#00263e;font-size:24px;line-height:1.1;text-align:left;\'>Universidad<br>Andrés Bello®</div></div>'">
         </div>
 
         <div class="footer-links">
@@ -452,11 +455,9 @@
     <!-- SCRIPT PARA CAMBIAR PESTAÑAS -->
     <script>
         function cambiarPestana(pestana) {
-            // Variables de las pestañas
             const tabAcceso = document.getElementById('tab-acceso');
             const tabVerif = document.getElementById('tab-verif');
             
-            // Variables del contenido
             const contAcceso = document.getElementById('contenido-acceso');
             const contVerif = document.getElementById('contenido-verif');
 
@@ -476,3 +477,4 @@
 
 </body>
 </html>
+
