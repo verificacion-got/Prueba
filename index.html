@@ -271,7 +271,6 @@
             position: relative;
         }
         
-        /* Simular icono ia de la imagen */
         .chat-icon::before {
             content: "ia";
             font-family: sans-serif;
@@ -311,35 +310,51 @@
     <!-- CABECERA -->
     <header>
         <div class="header-logo">
-            <!-- Simulación del logo para que se vea si no hay imagen -->
-            <img src="logo-unab-color.png" alt="Universidad Andrés Bello" onerror="this.outerHTML='<div style=\'display:flex;align-items:center;\'><div style=\'width:40px;height:40px;background:#00263e;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-right:10px;\'><div style=\'color:red;font-weight:bold;font-size:20px;\'>III</div></div><div style=\'color:#00263e;font-size:18px;line-height:1;\'>Universidad<br>Andrés Bello®</div></div>'">
+            <!-- Actualizado al archivo logoA.jpg -->
+            <img src="logoA.jpg" alt="Universidad Andrés Bello" onerror="this.outerHTML='<div style=\'display:flex;align-items:center;\'><div style=\'width:40px;height:40px;background:#00263e;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-right:10px;\'><div style=\'color:red;font-weight:bold;font-size:20px;\'>III</div></div><div style=\'color:#00263e;font-size:18px;line-height:1;\'>Universidad<br>Andrés Bello®</div></div>'">
         </div>
         <a href="#" class="header-btn">
             Certificados<br>en línea
         </a>
     </header>
 
-    <!-- PESTAÑAS -->
+    <!-- PESTAÑAS (Añadido eventos onclick) -->
     <div class="tabs-container">
-        <div class="tab inactive">
+        <div class="tab inactive" id="tab-acceso" onclick="cambiarPestana('acceso')">
             ACCESO ALUMNO<br>Y EGRESADOS
         </div>
-        <div class="tab active">
+        <div class="tab active" id="tab-verif" onclick="cambiarPestana('verificacion')">
             VERIFICACIÓN<br>CERTIFICADO
         </div>
     </div>
 
-    <!-- CONTENIDO PRINCIPAL / FORMULARIO -->
+    <!-- CONTENIDO PRINCIPAL -->
     <main class="main-wrapper">
-        <div class="form-section">
+        
+        <!-- PESTAÑA: ACCESO ALUMNOS -->
+        <div id="contenido-acceso" class="form-section" style="display: none;">
+            <p class="form-instructions">Ingrese sus credenciales de alumno o egresado.</p>
+            <div class="input-group">
+                <input type="text" placeholder="Usuario / RUT">
+            </div>
+            <div class="input-group">
+                <input type="password" placeholder="Contraseña">
+            </div>
+            <button class="btn-submit">Ingresar</button>
+        </div>
+
+        <!-- PESTAÑA: VERIFICACIÓN -->
+        <div id="contenido-verif" class="form-section">
             <p class="form-instructions">Ingrese el Folio e Id que aparece al final del certificado.</p>
             
             <div class="input-group">
-                <input type="text" placeholder="Folio">
+                <!-- Folio prellenado -->
+                <input type="text" placeholder="Folio" value="831688">
             </div>
             
             <div class="input-group">
-                <input type="text" placeholder="ID Alumno">
+                <!-- ID Alumno prellenado -->
+                <input type="text" placeholder="ID Alumno" value="12698620">
             </div>
 
             <button class="btn-submit">Aceptar</button>
@@ -412,14 +427,12 @@
         </div>
     </footer>
 
-    <!-- FOOTER NEGRO (ACREDITACIONES) -->
+    <!-- FOOTER NEGRO -->
     <div class="footer-black">
         <div class="accreditation-box">
-            <!-- Reemplazo textual de la primera caja de acreditación si no hay imagen -->
             <img src="acreditacion-cna.png" alt="Acreditación CNA" onerror="this.outerHTML='<div style=\'color:#fff;text-align:left;font-size:12px;line-height:1.4;\'><strong style=\'font-size:16px;\'>UNIVERSIDAD ACREDITADA<br>Nivel de excelencia en todas las áreas:</strong><br>• Docencia y resultados del proceso de formación<br>• Gestión estratégica y recursos institucionales<br>• Aseguramiento interno de la calidad<br>• Docencia y resultados del proceso de formación<br>• Vinculación con el medio<br><div style=\'text-align:right;margin-top:5px;border:1px solid #fff;display:inline-block;padding:2px 5px;float:right;\'>HASTA DIC. 2028</div><div style=\'clear:both;\'></div></div>'">
         </div>
         <div class="accreditation-box">
-            <!-- Reemplazo textual de la segunda caja de acreditación si no hay imagen -->
             <img src="acreditacion-internacional.png" alt="Acreditación Internacional" onerror="this.outerHTML='<div style=\'display:flex;justify-content:space-between;align-items:center;color:#fff;flex-wrap:wrap;gap:10px;\'><div style=\'font-size:24px;font-weight:bold;\'>8 <span style=\'font-weight:normal;font-size:16px;\'>años</span> ||| MSCHE</div><div><span style=\'border:1px solid #fff;padding:2px;font-size:10px;\'>AUDIT ANECA</span></div><div style=\'font-size:18px;\'>CHEA CIQG</div></div>'">
         </div>
     </div>
@@ -432,6 +445,35 @@
             <span class="chat-text-sub">Estamos en línea</span>
         </div>
     </div>
+
+    <!-- SCRIPT PARA CAMBIAR PESTAÑAS -->
+    <script>
+        function cambiarPestana(pestana) {
+            // Variables de las pestañas
+            const tabAcceso = document.getElementById('tab-acceso');
+            const tabVerif = document.getElementById('tab-verif');
+            
+            // Variables del contenido
+            const contAcceso = document.getElementById('contenido-acceso');
+            const contVerif = document.getElementById('contenido-verif');
+
+            if(pestana === 'acceso') {
+                // Estilos de pestañas
+                tabAcceso.className = 'tab active';
+                tabVerif.className = 'tab inactive';
+                // Mostrar/Ocultar contenido
+                contAcceso.style.display = 'block';
+                contVerif.style.display = 'none';
+            } else {
+                // Estilos de pestañas
+                tabAcceso.className = 'tab inactive';
+                tabVerif.className = 'tab active';
+                // Mostrar/Ocultar contenido
+                contAcceso.style.display = 'none';
+                contVerif.style.display = 'block';
+            }
+        }
+    </script>
 
 </body>
 </html>
